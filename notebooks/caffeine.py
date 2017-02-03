@@ -59,7 +59,7 @@ def names_caffeine():
                         "venous plasma concentration paraxanthine", "free liver concentration paraxanthine",
                         "free kidney concentration paraxanthine", "liver clearance paraxanthine [l/hr]",
                         "rate of paraxanthine change [l/hr]", "caffeine absorption", "Venous_caf",
-                        "paraxanthine absorption", "Venous_px", "Abody_caf", "Abody_px", ""]
+                        "paraxanthine absorption", "Venous_px", "Abody_caf", "Abody_px"]
 
     dx_names = [        "ODE A [mg] amount gut caffeine", "ODE A [mg] amount kidney caffeine",
                          "ODE A [mg] amount liver caffeine", "ODE A [mg] amount lung caffeine",
@@ -72,8 +72,6 @@ def names_caffeine():
                          "ODE A [mg] amount venous blood paraxanthine", "ODE oral dose paraxanthine [mg]", "ODE DCL_px",
                          ""]
     return p_names, y_names, x_names, dx_names
-
-p_names, y_names, x_names, dx_names = names_caffeine()
 
 
 def X0_caffeine():
@@ -108,16 +106,11 @@ def X0_caffeine():
     x[19] = 0   # global quantity 'DCL_px':ode
     return x
 
-X0 = X0_caffeine()
 
+def p_caffeine():
+    """ Returns parameters for the caffeine model.
 
-def dxdt_caffeine(x, t):
-    """ Differential equation system for caffeine model.
-
-    :param x: state vector
-    :param t: time
-
-    :return: differential equation system for odeint
+    :return:
     :rtype:
     """
     p = np.empty(47)
@@ -168,7 +161,17 @@ def dxdt_caffeine(x, t):
     p[44] = 1.5  # global quantity 'relative clearance of px to caf': fixed
     p[45] = 0  # global quantity 'renal clearance [L/hr] caffeine': fixed
     p[46] = 0  # global quantity 'renal clearance [L/hr] paraxanthine': fixed
+    return p
 
+
+def y_caffeine(x, p):
+    """ Returns the assignment for caffeine model.
+
+    :param x:
+    :param p:
+    :return:
+    :rtype:
+    """
     y = np.empty(53)
     y[11] = p[1] / 1000.00000000000000000 * 3600.00000000000000000  # model entity 'cardiac output [L/hr]': assignment
     y[12] = p[34]  # model entity 'Ka [1/hr] absorption paraxanthine': assignment
@@ -223,6 +226,37 @@ def dxdt_caffeine(x, t):
     y[8] = p[0] * p[10]  # model entity 'plasma': assignment
     y[9] = y[8] * y[6] / (y[6] + y[7])  # model entity 'venous plasma': assignment
     y[10] = y[8] * y[7] / (y[6] + y[7])  # model entity 'arterial plasma': assignment
+    return y
+
+
+def Y_caffeine(X, p):
+    """ Calculates the Y matrix.
+
+    :param X:
+    :param p:
+    :return:
+    :rtype:
+    """
+    # calculate Y
+    p_names, y_names, x_names, dx_names = names_caffeine()
+
+    Y = np.zeros([X.shape[0], len(y_names)])
+    # calculate y for all timepoints
+    for k in range(X.shape[0]):
+        Y[k, :] = y_caffeine(X[k, :], p)
+    return Y
+
+
+def dxdt_caffeine(x, t, p):
+    """ Differential equation system for caffeine model.
+
+    :param x: state vector
+    :param t: time
+
+    :return: differential equation system for odeint
+    :rtype:
+    """
+    y = y_caffeine(x, p)
 
     # --- ode ---
     dx = np.empty(20)
@@ -248,8 +282,6 @@ def dxdt_caffeine(x, t):
     dx[19] = p[46] * y[44] - y[46]    # model entity 'DCL_px': ode
     return dx
 
-dxdt = dxdt_caffeine
-
 
 def test_caffeine():
     """ Testing the ode integration of the caffeine model.
@@ -261,11 +293,13 @@ def test_caffeine():
     """
     from matplotlib import pylab as plt
     from scipy.integrate import odeint
+
     print('*** test caffeine ***')
     T = np.arange(0, 24, 0.1)
     X0 = X0_caffeine()
     dxdt = dxdt_caffeine
-    X = odeint(dxdt_caffeine, X0, T)
+    X = odeint(dxdt, X0, T, args=(p_caffeine(), ))
+
     plt.plot(T, X, linewidth=2)
     plt.show()
 
