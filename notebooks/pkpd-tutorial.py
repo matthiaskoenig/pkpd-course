@@ -5,7 +5,7 @@
 # ## Whole-body PKPD model for caffeine
 # PKPD model for clearance of caffeine by the human liver.
 # 
-# <img src="figures/caffeine_pkpd.png" width="400">
+# ![Fig.1 Caffeine PKPD Model](figures/caffeine_pkpd.png)
 # 
 # * Caffeine and the primary metabolite paraxanthine are removed from the blood stream by hepatic or renal clearance.
 # * Caffeine can be given either as intra-venous injection or by oral dose in the model
@@ -20,8 +20,10 @@
 # * `scipy`
 # * `matplotlib`
 # 
-# For questions contact konigmatt@googlemail.com.  
-# The latest version of this tutorial is available at https://github.com/matthiaskoenig/pkpd-tutorial
+# For questions contact konigmatt@googlemail.com. The latest version of the resources are available from https://github.com/matthiaskoenig/pkpd-tutorial with 
+# 
+# * [notebooks/caffeine.py](https://github.com/matthiaskoenig/pkpd-tutorial/blob/master/notebooks/caffeine.py) 
+# * [notebooks/pkpd-tutorial.ipynb](https://github.com/matthiaskoenig/pkpd-tutorial/blob/master/notebooks/pkpd-tutorial.ipynb)
 
 # In[1]:
 
@@ -100,20 +102,20 @@ ax1.legend()
 plt.show()
 
 
-# In[5]:
+# In[9]:
 
 # to lookup the indices you can do for instance
-dict(zip(x_names, range(len(x_names))))
+# dict(zip(x_names, range(len(x_names))))
 
 
 # ## Plot concentrations
 # The concentrations are derived/calculated values from the ode system. All calculated values, 
 # not being state variables are available in `y`.
 
-# In[6]:
+# In[11]:
 
 # y names
-dict(zip(y_names, range(len(y_names))))
+# dict(zip(y_names, range(len(y_names))))
 
 
 # In[7]:
@@ -142,36 +144,25 @@ plt.show()
 
 # # Exercises
 # ## E1 Your caffeine level
-# The first exercise is to calculate the timecourse of your caffeine level after you drink some caffeinated beverage.
+# The first exercise is to calculate the timecourse of the expected venous caffeine level after you drink some caffeinated beverage. To estimate your oral dose of caffeine you can estimate the caffeine content from the following chart
+# ![Fig.2 Caffeine Content of Beverages](figures/caffeine_levels.jpg)
 # 
-# To estimate the oral dose you can estimate the caffeine content from the following chart
-# <img src="figures/caffeine_levels.jpg" width="600">
+# The oral dose is defined in the model via parameter `p[31] = 100` [mg]. In addition you can also adjust the bodyweight to get a more realistic estimation via the parameter `p[0] = 70` [kg].
 # 
-# Tee also contains caffeine, it depends on the tee how much it contains.
-# 
-# The oral dose of the model is defined in parameter `p[31] = 100` [mg]. In addition you can also adjust the bodyweight to get a more realistic estimation via the parameter `p[0] = 70` [kg].
-# 
-# What would be your level of caffeine now, if you had two cups of coffee for breakfast this morning?
-# 
-# How would your time course and level of caffeine look if you would take the same amount of caffeine intravenously (I.V)?  
-# (Hint: you have to set the oral dose to 0 and set the respective i.v. dose)
-# 
-# What is the peak time of caffeine in venous blood? What is the peak concentration?
-# 
+# * What would be your level of caffeine now, if you had two cups of coffee for breakfast this morning?
+# * How would your time course and level of caffeine look if you would take the same amount of caffeine intravenously (I.V)? (Hint: you have to set the oral dose to 0 and set the respective i.v. dose)
+# * What is the peak time of caffeine in venous blood? What is the peak concentration?
 # 
 # ## E2 Interindividual variability
 # We saw that there is a large variability in caffeine kinetics in the population. Depending on if you are a fast or slow metabolizer of caffeine the timecourses can look very different. In E1 you calculated the mean timecourse for the population. Now we will look at the interindividual differences.
 # 
 # Your caffeine clearance by the liver depends on the activity of CYP1A2 in the liver, the main enzyme metabolizing caffeine. The activity is defined via the apparent clearance caffeine by hepatic microsomes `p[43] = 2` [mul/min/mg].
 # 
-# How would your time course / level of caffeine change if you are a slow metabolizer (small apparent clearance), or if you are a fast metabolizer (large apperent clearance)?
+# * How would your time course / level of caffeine change if you are a slow metabolizer (small apparent clearance), or if you are a fast metabolizer (large apperent clearance)?
+# * Simulate the effect of lifestyle changes on your caffeine clearance via adjusting the caffeine clearance accordinly. For instance simulate changes in your coffee intake or smoking habit. An overview over the changes in apparent clearance are given in Tab.1. 
+# * How would your caffeine timecourse change if you smoke >20 cigarettes per day and drink 1 liter of coffee (the effects are additive) compared to being abstinent?
 # 
-# In addition you can simulate the effect of lifestyle changes, like your coffee intake or smoking habit.
-# An overview over the changes in apparent clearance are given in the following table
-# 
-# <img src="figures/Tantcheva-Poor1999_Tab4.png" width="600">
-# 
-# How would your caffeine timecourse change if you smoke >20 cigarettes per day and drink 1 liter of coffee (the effects are additive) compared to being abstinent?
+# ![Tab.1 Lifestyle Effects](figures/Tantcheva-Poor1999_Tab4.png)
 
 # In[ ]:
 
