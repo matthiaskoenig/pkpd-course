@@ -5,6 +5,77 @@ from __future__ import print_function, division
 import numpy as np
 
 
+def names_caffeine():
+    p_names = [         "body weight", "cardiac output [ml/s]", "rest of body fractional tissue volume",
+                        "gut fractional tissue volume", "kidney fractional tissue volume",
+                        "liver fractional tissue volume", "lung fractional tissue volume",
+                        "spleen fractional tissue volume", "venous fractional tissue volume",
+                        "arterial fractional tissue volume", "plasma fractional tissue volume",
+                        "gut fractional tissue blood flow", "kidney fractional tissue blood flow",
+                        "hepatic (venous side) fractional tissue blood flow", "lung fractional tissue blood flow",
+                        "spleen fractional tissue blood flow", "rest of body fractional tissue blood flow",
+                        "mg microsomal protein per g liver", "gut plasma partition coefficient caffeine",
+                        "kidney plasma partition coefficient caffeine", "liver plasma partition coefficient caffeine",
+                        "lung plasma partition coefficient caffeine", "spleen plasma partition coefficient caffeine",
+                        "rest plasma partition coefficient caffeine", "gut plasma partition coefficient paraxanthine",
+                        "kidney plasma partition coefficient paraxanthine",
+                        "liver plasma partition coefficient paraxanthine",
+                        "lung plasma partition coefficient paraxanthine",
+                        "spleen plasma partition coefficient paraxanthine",
+                        "rest plasma partition coefficient paraxanthine", "IV bolus dose caffeine [mg]",
+                        "oral bolus dose caffeine [mg]", "IV bolus dose paraxanthine [mg]",
+                        "oral bolus dose paraxanthine [mg]", "Ka [1/hr] absorption caffeine",
+                        "fraction absorbed caffeine", "fraction absorbed paraxanthine",
+                        "fraction unbound in plasma caffeine", "blood to plasma ratio caffeine",
+                        "fraction unbound in microsomes caffeine", "fraction unbound in plasma paraxanthine",
+                        "blood to plasma ratio paraxanthine", "fraction unbound in microsomes paraxanthine",
+                        "HLM apparent clearance caffeine by hepatic microsomes [mul/min/mg]",
+                        "relative clearance of px to caf", "renal clearance [L/hr] caffeine",
+                        "renal clearance [L/hr] paraxanthine", ""]
+
+    x_names = [         "A [mg] amount gut caffeine", "A [mg] amount kidney caffeine", "A [mg] amount liver caffeine",
+                        "A [mg] amount lung caffeine", "A [mg] amount spleen caffeine", "A [mg] amount rest caffeine",
+                        "A [mg] amount arterial blood caffeine", "A [mg] amount gut paraxanthine",
+                        "A [mg] amount kidney paraxanthine", "A [mg] amount liver paraxanthine",
+                        "A [mg] amount lung paraxanthine", "A [mg] amount spleen paraxanthine",
+                        "A [mg] amount rest paraxanthine", "A [mg] amount arterial blood paraxanthine",
+                        "A [mg] amount venous blood caffeine", "oral dose caffeine [mg]", "DCL_caf",
+                        "A [mg] amount venous blood paraxanthine", "oral dose paraxanthine [mg]", "DCL_px", ""]
+
+    y_names = [         "rest of body", "gut", "kidney", "liver", "lung", "spleen", "venous blood", "arterial blood",
+                        "plasma", "venous plasma", "arterial plasma", "cardiac output [L/hr]",
+                        "Ka [1/hr] absorption paraxanthine",
+                        "HLM apparent clearance paraxanthine by hepatic microsomes [mul/min/mg]", "gut blood flow",
+                        "kidney blood flow", "hepatic (venous side) blood flow", "hepatic artery blood flow",
+                        "lung blood flow", "spleen blood flow", "rest of body blood flow", "C caffeine [mg/l] gut",
+                        "C caffeine [mg/l] kidney", "C caffeine [mg/l] liver", "C caffeine [mg/l] lung",
+                        "C caffeine [mg/l] spleen", "C caffeine [mg/l] rest of body", "C caffeine [mg/l] venous blood",
+                        "C caffeine [mg/l] arterial blood", "C paraxanthine [mg/l] gut", "C paraxanthine [mg/l] kidney",
+                        "C paraxanthine [mg/l] liver", "C paraxanthine [mg/l] lung", "C paraxanthine [mg/l] spleen",
+                        "C paraxanthine [mg/l] rest of body", "C paraxanthine [mg/l] venous blood",
+                        "C paraxanthine [mg/l] arterial blood", "venous plasma concentration caffeine",
+                        "free liver concentration caffeine", "free kidney concentration caffeine",
+                        "liver clearance caffeine [l/hr]", "rate of caffeine change [l/hr]",
+                        "venous plasma concentration paraxanthine", "free liver concentration paraxanthine",
+                        "free kidney concentration paraxanthine", "liver clearance paraxanthine [l/hr]",
+                        "rate of paraxanthine change [l/hr]", "caffeine absorption", "Venous_caf",
+                        "paraxanthine absorption", "Venous_px", "Abody_caf", "Abody_px", ""]
+
+    dx_names = [        "ODE A [mg] amount gut caffeine", "ODE A [mg] amount kidney caffeine",
+                         "ODE A [mg] amount liver caffeine", "ODE A [mg] amount lung caffeine",
+                         "ODE A [mg] amount spleen caffeine", "ODE A [mg] amount rest caffeine",
+                         "ODE A [mg] amount arterial blood caffeine", "ODE A [mg] amount gut paraxanthine",
+                         "ODE A [mg] amount kidney paraxanthine", "ODE A [mg] amount liver paraxanthine",
+                         "ODE A [mg] amount lung paraxanthine", "ODE A [mg] amount spleen paraxanthine",
+                         "ODE A [mg] amount rest paraxanthine", "ODE A [mg] amount arterial blood paraxanthine",
+                         "ODE A [mg] amount venous blood caffeine", "ODE oral dose caffeine [mg]", "ODE DCL_caf",
+                         "ODE A [mg] amount venous blood paraxanthine", "ODE oral dose paraxanthine [mg]", "ODE DCL_px",
+                         ""]
+    return p_names, y_names, x_names, dx_names
+
+p_names, y_names, x_names, dx_names = names_caffeine()
+
+
 def X0_caffeine():
     """ Returns the initial value array.
     
@@ -14,7 +85,7 @@ def X0_caffeine():
     # ---------------------
     # Initial values
     # ---------------------
-    x = np.empty([20])
+    x = np.empty(20)
     x[0] = 0    # global quantity 'A [mg] amount gut caffeine':ode
     x[1] = 0    # global quantity 'A [mg] amount kidney caffeine':ode
     x[2] = 0    # global quantity 'A [mg] amount liver caffeine':ode
@@ -37,6 +108,8 @@ def X0_caffeine():
     x[19] = 0   # global quantity 'DCL_px':ode
     return x
 
+X0 = X0_caffeine()
+
 
 def dxdt_caffeine(x, t):
     """ Differential equation system for caffeine model.
@@ -47,7 +120,6 @@ def dxdt_caffeine(x, t):
     :return: differential equation system for odeint
     :rtype:
     """
-    # --- Parameters ---
     p = np.empty(47)
     p[0] = 70  # global quantity 'body weight': fixed
     p[1] = 108.33  # global quantity 'cardiac output [ml/s]': fixed
@@ -97,7 +169,6 @@ def dxdt_caffeine(x, t):
     p[45] = 0  # global quantity 'renal clearance [L/hr] caffeine': fixed
     p[46] = 0  # global quantity 'renal clearance [L/hr] paraxanthine': fixed
 
-    # --- assignments ---
     y = np.empty(53)
     y[11] = p[1] / 1000.00000000000000000 * 3600.00000000000000000  # model entity 'cardiac output [L/hr]': assignment
     y[12] = p[34]  # model entity 'Ka [1/hr] absorption paraxanthine': assignment
@@ -157,16 +228,14 @@ def dxdt_caffeine(x, t):
     dx = np.empty(20)
     dx[0] = y[47] + y[14] * (y[28] - y[21] / p[18] * p[38])    # model entity 'A [mg] amount gut caffeine': ode
     dx[1] = y[15] * (y[28] - y[22] / p[19] * p[38]) - p[45] * y[39]    # model entity 'A [mg] amount kidney caffeine': ode
-    dx[2] = y[17] * y[28] + y[14] * (y[21] / p[18]) * p[38] + y[19] * (y[25] / p[22]) * p[38] - y[16] * (
-    y[23] / p[20]) * p[38] - y[41]    # model entity 'A [mg] amount liver caffeine': ode
+    dx[2] = y[17] * y[28] + y[14] * (y[21] / p[18]) * p[38] + y[19] * (y[25] / p[22]) * p[38] - y[16] * (y[23] / p[20]) * p[38] - y[41]    # model entity 'A [mg] amount liver caffeine': ode
     dx[3] = y[18] * y[27] - y[18] * (y[24] / p[21]) * p[38]    # model entity 'A [mg] amount lung caffeine': ode
     dx[4] = y[19] * (y[28] - y[25] / p[22] * p[38])    # model entity 'A [mg] amount spleen caffeine': ode
     dx[5] = y[20] * (y[28] - y[26] / p[23] * p[38])    # model entity 'A [mg] amount rest caffeine': ode
     dx[6] = y[18] * (y[24] / p[21]) * p[38] - y[18] * y[28]    # model entity 'A [mg] amount arterial blood caffeine': ode
     dx[7] = y[49] + y[14] * (y[36] - y[29] / p[24] * p[41])    # model entity 'A [mg] amount gut paraxanthine': ode
     dx[8] = y[15] * (y[36] - y[30] / p[25] * p[41]) - p[46] * y[44]    # model entity 'A [mg] amount kidney paraxanthine': ode
-    dx[9] = y[17] * y[36] + y[14] * (y[29] / p[24]) * p[41] + y[19] * (y[33] / p[28]) * p[41] - y[16] * (
-    y[31] / p[26]) * p[41] + y[41] - y[46]    # model entity 'A [mg] amount liver paraxanthine': ode
+    dx[9] = y[17] * y[36] + y[14] * (y[29] / p[24]) * p[41] + y[19] * (y[33] / p[28]) * p[41] - y[16] * (y[31] / p[26]) * p[41] + y[41] - y[46]    # model entity 'A [mg] amount liver paraxanthine': ode
     dx[10] = y[18] * y[35] - y[18] * (y[32] / p[27]) * p[41]    # model entity 'A [mg] amount lung paraxanthine': ode
     dx[11] = y[19] * (y[36] - y[33] / p[28] * p[41])    # model entity 'A [mg] amount spleen paraxanthine': ode
     dx[12] = y[20] * (y[36] - y[34] / p[29] * p[41])    # model entity 'A [mg] amount rest paraxanthine': ode
@@ -177,8 +246,9 @@ def dxdt_caffeine(x, t):
     dx[17] = y[50] - y[18] * y[35]    # model entity 'A [mg] amount venous blood paraxanthine': ode
     dx[18] = (-y[49])    # model entity 'oral dose paraxanthine [mg]': ode
     dx[19] = p[46] * y[44] - y[46]    # model entity 'DCL_px': ode
-
     return dx
+
+dxdt = dxdt_caffeine
 
 
 def test_caffeine():
