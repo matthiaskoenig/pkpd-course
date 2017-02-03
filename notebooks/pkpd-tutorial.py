@@ -59,7 +59,7 @@ from pprint import pprint
 p_names, y_names, x_names, dx_names = names_caffeine()
 
 # display the x-variable names of the ODE
-pprint(x_names)
+# pprint(x_names)
 
 
 # ## Example simulation
@@ -75,9 +75,10 @@ pars = p_caffeine()
 dxdt = dxdt_caffeine
 X = odeint(dxdt, X0, T, args=(pars, ))
 
-plt.plot(T, X, linewidth=2)
-plt.title('100 [mg] caffeine (p.o)')
-plt.xlabel('time [h]')
+f1, ax1 = plt.subplots(1, 1, figsize=(4,4), dpi=80)
+ax1.plot(T, X, linewidth=2)
+ax1.set_title('100 [mg] caffeine (p.o)')
+ax1.set_xlabel('time [h]')
 plt.show()
 
 
@@ -87,14 +88,14 @@ plt.show()
 # In[4]:
 
 # plot caffeine and paraxanthine amounts
-f1, ax1 = plt.subplots(1, 1, figsize=(5,5), dpi=80)
+f1, ax1 = plt.subplots(1, 1, figsize=(4,4), dpi=80)
 
 # venous blood amounts
 ax1.plot(T, X[:,14], color='black', linewidth=2, label=x_names[14])
-ax1.plot(T, X[:,17], color='black', linewidth=2, label=x_names[17])
+ax1.plot(T, X[:,17], color='black', linewidth=2, label=x_names[17], linestyle='--')
 # liver blood amounts
 ax1.plot(T, X[:,2], color='red', linewidth=2, label=x_names[2])
-ax1.plot(T, X[:,9], color='red', linewidth=2, label=x_names[9])
+ax1.plot(T, X[:,9], color='red', linewidth=2, label=x_names[9], linestyle='--')
 
 ax1.set_xlabel('time [h]')
 ax1.legend()
@@ -102,7 +103,7 @@ ax1.legend()
 plt.show()
 
 
-# In[9]:
+# In[5]:
 
 # to lookup the indices you can do for instance
 # dict(zip(x_names, range(len(x_names))))
@@ -112,7 +113,7 @@ plt.show()
 # The concentrations are derived/calculated values from the ode system. All calculated values, 
 # not being state variables are available in `y`.
 
-# In[11]:
+# In[6]:
 
 # y names
 # dict(zip(y_names, range(len(y_names))))
@@ -127,14 +128,14 @@ Y = Y_caffeine(X, pars)
 # In[8]:
 
 # plot caffeine and paraxanthine concentrations
-f1, ax1 = plt.subplots(1, 1, figsize=(5,5), dpi=80)
+f1, ax1 = plt.subplots(1, 1, figsize=(4,4), dpi=80)
 
 # venous blood concentrations
 ax1.plot(T, Y[:,27], color='black', linewidth=2, label=y_names[27])
-ax1.plot(T, Y[:,35], color='black', linewidth=2, label=y_names[35])
+ax1.plot(T, Y[:,35], color='black', linewidth=2, label=y_names[35], linestyle='--')
 # liver blood amounts
 ax1.plot(T, Y[:,23], color='red', linewidth=2, label=y_names[23])
-ax1.plot(T, Y[:,31], color='red', linewidth=2, label=y_names[31])
+ax1.plot(T, Y[:,31], color='red', linewidth=2, label=y_names[31], linestyle='--')
 
 ax1.set_xlabel('time [h]')
 ax1.legend()
