@@ -1,13 +1,16 @@
 # Documentation
-## Installation
-The following python packages are required for the tutorial
 
+Create a virtual environment
 ```
-libroadrunner
-pandas
+mkvirtualenv pkpd-tutorial -p python3
 ```
 
-## Register a kernel
+Install requirements
+```
+pip install -r requirements.txt --upgrade
+```
+
+Register a kernel
 ```
 python -m ipykernel install --name pkpd-tutorial
 ```
