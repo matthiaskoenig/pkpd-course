@@ -1,6 +1,5 @@
 # pkpd-tutorial
 
-
 ## Installation
 We need an environment with the libraries listed in `requirements.txt`
 These are standard python libraries and `libroadrunner` for simulation of SBML models.
@@ -9,7 +8,7 @@ These are standard python libraries and `libroadrunner` for simulation of SBML m
 One possible solution is to setup a virtual environment with all system dependencies.
 Create a virtual environment
 ```
-mkvirtualenv pk-tutorial --python=python3.7
+mkvirtualenv pkpd-tutorial --python=python3.7
 ```
 
 Install requirements
@@ -20,5 +19,5 @@ Install requirements
 
 Register a kernel
 ```
-python -m ipykernel install --user --name pk-tutorial
+python -m ipykernel install --user --name pkpd-tutorial
 ```
