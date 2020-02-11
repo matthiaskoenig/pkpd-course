@@ -3,3 +3,4 @@
 *.bib
 *.bib.bak
 __pycache__
+*.pyc
