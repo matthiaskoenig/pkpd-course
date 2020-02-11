@@ -9,16 +9,16 @@ These are standard python libraries and `libroadrunner` for simulation of SBML m
 One possible solution is to setup a virtual environment with all system dependencies.
 Create a virtual environment
 ```
-mkvirtualenv pkpd-tutorial --python=python3.7
+mkvirtualenv pk-tutorial --python=python3.7
 ```
 
 Install requirements
 ```
-pip install -r requirements.txt --upgrade
-pip install ipykernel jupyterlab
+(pk-tutorial) pip install -r requirements.txt --upgrade
+(pk-tutorial) pip install ipykernel jupyterlab
 ```
 
 Register a kernel
 ```
-sudo python -m ipykernel install --name pkpd-tutorial
+python -m ipykernel install --user --name pk-tutorial
 ```

@@ -2,3 +2,4 @@
 .ipynb_checkpoints
 *.bib
 *.bib.bak
+__pycache__
