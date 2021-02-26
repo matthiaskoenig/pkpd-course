@@ -1,0 +1,5 @@
+numpy
+scipy
+matplotlib
+pandas
+libroadrunner>=2.0.5
