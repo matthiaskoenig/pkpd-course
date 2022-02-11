@@ -10,7 +10,7 @@
   <model metaid="meta_caffeine_body" id="caffeine_body" name="Caffeine whole-body model" substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
-        <h1>Caffene whole-body model</h1>
+        <h1>Caffeine whole-body model</h1>
         <h2>Terms of use</h2>
         <p>The content of this model has been carefully created in a manual research effort.
 This file has been created by <a href="https://livermetabolism.com">Matthias König</a>
