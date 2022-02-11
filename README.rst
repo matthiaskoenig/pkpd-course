@@ -56,4 +56,4 @@ License
 * Source Code: `LGPLv3 <http://opensource.org/licenses/LGPL-3.0>`__
 * Documentation: `CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>`__
 
-© 2018-2021 Matthias König
+© 2018-2022 Matthias König
