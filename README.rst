@@ -2,6 +2,8 @@ pkpd-course: A python introduction to PK/PD models
 ===================================================
 Matthias König, `https://livermetabolism.com <https://livermetabolism.com>`__
 
+The introductory lecture is available from
+https://docs.google.com/presentation/d/e/2PACX-1vQG8vtoCVWW3yOQFczrevLZmluhHrKpGVztJho-SY-nbTis8XNYNQyZ3src6AkrL5n3Sv2F6tlL3Fyu/pub?start=false&loop=false&delayms=3000
 
 This course provides resources for a simple introduction to PK/PD models
 using a `caffeine` physiological-based whole body model.
@@ -48,7 +50,11 @@ Register the virtualenv as a kernel::
 Funding
 =======
 Matthias König is supported by the Federal Ministry of Education and Research (BMBF, Germany)
-within the research network Systems Medicine of the Liver (**LiSyM**, grant number 031L0054).
+within the research network Systems Medicine of the Liver (**LiSyM**, grant number 031L0054), 
+by the German Research Foundation (DFG) within the Research Unit 
+Programme FOR 5151 "QuaLiPerF (Quantifying Liver Perfusion-Function Relationship in Complex 
+Resection - A Systems Medicine Approach)" by grant number 436883643 and by grant no. 465194077 
+(Priority Programme SPP 2311, Subproject SimLivA).
 
 License
 =======
