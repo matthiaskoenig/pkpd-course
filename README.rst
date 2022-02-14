@@ -4,12 +4,8 @@ Matthias König, `https://livermetabolism.com <https://livermetabolism.com>`__
 
 The introductory lecture is available here
 
-
-
-<a href="https://docs.google.com/presentation/d/e/2PACX-1vQG8vtoCVWW3yOQFczrevLZmluhHrKpGVztJho-SY-nbTis8XNYNQyZ3src6AkrL5n3Sv2F6tlL3Fyu/pub?start=false&loop=false&delayms=3000" target="_blank">
-    <img src="./presentation/presentation.png" height="150"/>
-</a>
-
+.. image:: ./presentation/presentation.png
+    :target: https://docs.google.com/presentation/d/e/2PACX-1vQG8vtoCVWW3yOQFczrevLZmluhHrKpGVztJho-SY-nbTis8XNYNQyZ3src6AkrL5n3Sv2F6tlL3Fyu/pub?start=false&loop=false&delayms=3000
 
 This course provides resources for a simple introduction to PK/PD models
 using a `caffeine` physiological-based whole body model.
